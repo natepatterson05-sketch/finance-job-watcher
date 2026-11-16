@@ -1,8 +1,8 @@
 {
-  "run_time": "2026-11-16T04:55:21.292504Z",
+  "run_time": "2026-11-16T20:23:55.040385Z",
   "first_run_date": "2026-11-16",
   "days_with_success": 1,
-  "open": 3788,
+  "open": 3764,
   "new_today": 0,
   "removed_today": 0,
   "sources": [
@@ -14,7 +14,7 @@
     {
       "name": "airbnb",
       "ok": true,
-      "count": 212
+      "count": 206
     },
     {
       "name": "airtable",
@@ -24,22 +24,22 @@
     {
       "name": "asana",
       "ok": true,
-      "count": 109
+      "count": 112
     },
     {
       "name": "betterment",
       "ok": true,
-      "count": 28
+      "count": 26
     },
     {
       "name": "brex",
       "ok": true,
-      "count": 286
+      "count": 276
     },
     {
       "name": "carta",
       "ok": true,
-      "count": 77
+      "count": 76
     },
     {
       "name": "chime",
@@ -49,17 +49,17 @@
     {
       "name": "coinbase",
       "ok": true,
-      "count": 265
+      "count": 260
     },
     {
       "name": "datadog",
       "ok": true,
-      "count": 382
+      "count": 381
     },
     {
       "name": "dropbox",
       "ok": true,
-      "count": 44
+      "count": 42
     },
     {
       "name": "duolingo",
@@ -69,47 +69,47 @@
     {
       "name": "figma",
       "ok": true,
-      "count": 139
+      "count": 140
     },
     {
       "name": "flexport",
       "ok": true,
-      "count": 204
+      "count": 203
     },
     {
       "name": "gusto",
       "ok": true,
-      "count": 75
+      "count": 76
     },
     {
       "name": "reddit",
       "ok": true,
-      "count": 145
+      "count": 148
     },
     {
       "name": "robinhood",
       "ok": true,
-      "count": 165
+      "count": 164
     },
     {
       "name": "sofi",
       "ok": true,
-      "count": 48
+      "count": 50
     },
     {
       "name": "stripe",
       "ok": true,
-      "count": 785
+      "count": 792
     },
     {
       "name": "toast",
       "ok": true,
-      "count": 355
+      "count": 348
     },
     {
       "name": "twilio",
       "ok": true,
-      "count": 113
+      "count": 108
     }
   ]
 }
