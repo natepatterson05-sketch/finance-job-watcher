@@ -12,7 +12,7 @@ publishing. No remote is configured yet, so this badge is a template.
 
 Phase 1 collection and history are validated: 21 public Greenhouse boards
 returned 3,787 postings on 2026-11-16 UTC, including 111 finance-related titles.
-All 46 offline pytest cases pass, and replaying the real snapshots produces a
+All 47 offline pytest cases pass, and replaying the real snapshots produces a
 byte-identical history.csv. No accepted board exceeds 5,000 jobs.
 Block failed posting validation and HubSpot returned 404; both are excluded from
 the active 21-employer registry. See docs/source-verification.json for per-board
@@ -263,3 +263,46 @@ before rendering.
 No Pages settings or external Site deployment have been changed. GitHub hosting,
 repository-specific badge URL, hosted workflow runs, and final submission file
 remain pending approval and repository details.
+
+
+## GitHub publishing and daily Pages refresh
+
+Publishing was approved by the user. It has not yet been performed: this
+session's GitHub CLI requests are blocked by outbound socket restrictions.
+GitHub CLI reports a configured account, but authentication cannot be verified
+from this sandbox; a network error must not be treated as proof of a bad token.
+
+`.github/workflows/pages.yml` publishes the default branch after a push, manual
+dispatch, or a successful Daily job watcher run. The workflow_run trigger is
+necessary because bot-token pushes do not trigger normal push deployments.
+It checks the originating repository and default branch, checks out that branch,
+runs Python and JavaScript tests, then stages the site with
+`python scripts/build_site.py`. Only 14 application/data files enter the Pages
+artifact; raw snapshots and development files stay in the GitHub repository.
+The workflow uses the github-pages environment and Pages/OIDC permissions.
+
+Activation from regular PowerShell, after local changes have been committed:
+
+```powershell
+gh auth status
+# If authentication is required, sign in using the browser:
+gh auth login --hostname github.com --git-protocol https --web
+# Create a new public repository and push the existing incremental history:
+gh repo create finance-job-watcher --public --source . --remote origin --push
+```
+
+Stop on any error (including an existing repository name) and inspect it before
+continuing; do not overwrite an existing remote or repository. Then, on GitHub,
+open the new repository's Settings > Pages and choose GitHub Actions as Source.
+Use Actions > Daily job watcher > Run workflow to start a real hosted collection.
+A successful daily run publishes its Issue and data commit, then triggers Pages.
+Check Tests, Daily job watcher, and Publish GitHub Pages runs. Fix failed runs
+before counting them as successful. At least seven distinct successful committed
+daily runs are needed by the deadline. Do not backdate snapshots.
+
+After repository creation, replace OWNER/REPOSITORY in the README badge with the
+actual path. The live site URL must be taken from a successful Pages deployment,
+not inferred as proof that the site is live. The final submission file still
+requires the student's ID and verified repository/site URLs.
+
+[GitHub documentation: publishing sources and bot commits](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).

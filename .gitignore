@@ -9,3 +9,4 @@ __pycache__/
 
 .browser-profile/
 .browser-test-output.txt
+_site/

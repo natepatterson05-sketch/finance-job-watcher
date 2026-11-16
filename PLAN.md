@@ -96,3 +96,9 @@ repository selection and approval to push. Website and PWA remain later phases.
   initialize in the sandbox. Browser runner and manual QA documented in README.
 - This phase is not yet committed or published. Intended commits: website,
   PWA/offline assets, then tests/documentation.
+
+## Publication authorization and preparation
+The user approved publishing. A GitHub Pages deployment workflow and selected-file
+artifact builder are implemented; 47 local Python tests pass. Network restrictions
+still block GitHub operations from this session. Repository creation/push, hosted
+tests, real daily Issues, Pages deployment, and verified public URLs are pending.

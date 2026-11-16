@@ -44,3 +44,16 @@
   is claimed. Browser manual checks remain necessary (see README).
 - Local HTTP server was used only for checks and stopped after validation.
 - No push, Issue publication, Pages configuration, or external deployment.
+
+## Approved GitHub publication preparation
+- The user approved publication. Added pages.yml with default-branch push/manual
+  and successful-daily workflow_run triggers, so bot data commits refresh Pages.
+- Added selected-file artifact staging and an artifact integrity test.
+- Latest local pytest: 47 passed in 0.33s; staging produced 14 public files.
+- GitHub CLI is installed and reports configured account natepatterson05-sketch,
+  but API requests fail with sandbox socket permission errors. Authentication
+  cannot be verified here. No remote, repository, deployment, or live Issue has
+  been created by this session. GitHub plugin was suggested, not connected.
+- Publication changes still require a local commit and a working GitHub
+  connection. Hosted execution, JS tests, offline/install QA, badge URL, seven
+  daily successes, and the final submission file remain to verify or complete.
