@@ -78,3 +78,9 @@ Status totals cover all roles; in_role enables finance-only views later.
   live site URL. Student details and Blackboard dates remain user-supplied.
 - Public repository and live Pages deployment require the user's approval;
   current authorization covers local work only.
+
+## Phase 2 implementation status
+Daily workflow, push/PR tests, and explicit-publish daily Issue synchronization
+are implemented locally. Eleven offline Issue tests pass (38 tests total).
+Hosted execution, a functional repository badge, and activation remain pending
+repository selection and approval to push. Website and PWA remain later phases.

@@ -3,11 +3,16 @@
 A Financial Data Analytics course project tracking public employer job boards,
 with a title-based finance flag and reproducible daily history.
 
+
+[![Tests](https://github.com/OWNER/REPOSITORY/actions/workflows/tests.yml/badge.svg)](https://github.com/OWNER/REPOSITORY/actions/workflows/tests.yml)
+
+Badge setup: replace `OWNER/REPOSITORY` with the approved repository path before
+publishing. No remote is configured yet, so this badge is a template.
 ## Current state
 
 Phase 1 collection and history are validated: 21 public Greenhouse boards
 returned 3,787 postings on 2026-11-16 UTC, including 111 finance-related titles.
-All 27 offline pytest cases pass, and replaying the real snapshots produces a
+All 38 offline pytest cases pass, and replaying the real snapshots produces a
 byte-identical history.csv. No accepted board exceeds 5,000 jobs.
 Block failed posting validation and HubSpot returned 404; both are excluded from
 the active 21-employer registry. See docs/source-verification.json for per-board
@@ -123,3 +128,59 @@ service worker, and offline caching. No deployment or push has been performed.
 
 
 
+
+
+## Phase 2: daily automation (prepared locally)
+
+`.github/workflows/tests.yml` runs pytest on pushes, pull requests, and manual
+dispatch using Python 3.11 and 3.14 on Ubuntu. Local tests currently run on
+Windows/Python 3.14.4; the hosted matrix is not yet verified.
+
+`.github/workflows/daily.yml` is scheduled for **12:23 UTC daily**, with manual
+dispatch on the repository's default branch. GitHub schedules can be delayed;
+data dates come from the actual collection start time. A shared concurrency
+group serializes daily runs and prevents overlapping Issue updates. It installs
+dependencies, runs tests, collects boards, publishes today's report, then commits
+and pushes only `data/raw`, `data/history.csv`, and `data/status.json`.
+Tests run inside this workflow too: pushes made with GitHub's built-in token
+do not normally trigger another push workflow.
+
+Every source failure is recorded. Even when all fetches fail, the fresh status
+and daily no-change Issue are saved and the workflow can finish and commit.
+Such a day adds no raw-data success date. A missing fresh status (for example,
+a fatal configuration error) prevents publication and commit. A failed Issue
+update or rejected push fails the workflow; rerun it after fixing the cause.
+There is no force push. Branch protection may require an adjusted publishing
+strategy before enabling this workflow.
+
+The built-in `GITHUB_TOKEN` needs `contents: write` and `issues: write` for the
+daily workflow; the test workflow requests only `contents: read`. No personal
+access token is required. GitHub Issues and Actions must be enabled. These
+workflows activate only after approved files reach the default branch of a
+GitHub repository. Their presence locally does not create a schedule.
+
+Preview the Issue locally without any GitHub request:
+
+```powershell
+.\.venv\Scripts\python.exe -m finance_job_watcher.issues
+```
+
+The report uses the UTC date from `status.run_time`, includes all new and removed
+postings with links, and excludes first-run postings from new arrivals. A valid
+empty change list still produces a report. The title is exactly `YYYY-MM-DD`.
+A hidden marker identifies reports owned by this tool. Same-day reruns update
+and reopen that date's existing report rather than creating another. Older open
+managed reports close only after today's complete report is written; unrelated
+Issues and pull requests are left alone. If a report exceeds the body limit,
+links go into managed comments; reruns update those comments and remove obsolete
+managed comments without removing user comments. Discovery is paginated. Do not
+remove the hidden markers from managed content.
+
+`--publish` explicitly performs external writes and requires `GH_TOKEN` and
+`GITHUB_REPOSITORY=OWNER/REPOSITORY`; it is invoked by the daily workflow.
+No live Issue has been created during development. Fake-client tests cover
+publication, reruns, failure ordering, large reports, and pagination.
+
+GitHub references: [workflow token permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token),
+[Issue API](https://docs.github.com/en/rest/issues/issues),
+[workflow triggering](https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow).

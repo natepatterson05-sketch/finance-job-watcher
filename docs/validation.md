@@ -1,25 +1,35 @@
 # Validation and commit status
 
-- Runtime: Python 3.14.4, project virtual environment, dependencies installed.
-- Latest pytest: 27 passed in 0.22s.
-- Live verification performed by the user from regular PowerShell:
-  2026-11-16T03:58:08.470440Z; 21 successful Greenhouse employer boards,
-  3,787 postings, 111 finance-related titles. Largest board: Stripe, 785 jobs.
-- Block failed title/HTTPS URL validation; HubSpot returned HTTP 404. Neither is
-  in config/sources.json. Failed sources have no raw file.
-- Replayed real raw snapshots and compared history.csv bytes: identical.
-- One distinct raw-data UTC date exists. This is not yet a committed successful
-  course run; Git writes are blocked inside this session.
-- Latest local staging attempt: cannot create .git/index.lock, permission denied.
-- No commits, pushes, or publication performed.
+## Phase 1
+- Python 3.14.4 and project virtual environment work.
+- Live verification: 2026-11-16T03:58:08.470440Z, performed by the user from
+  regular PowerShell because this session blocks outbound shell HTTPS.
+- 21 successful Greenhouse employer boards, 3,787 postings, 111 finance-related
+  titles. Largest accepted board: Stripe, 785 jobs.
+- Block failed title/HTTPS URL validation; HubSpot returned HTTP 404. Neither
+  is in config/sources.json, and neither wrote a raw file.
+- Replaying the real raw snapshots reproduced history.csv byte for byte.
+- Three local commits verified: d08c94a (plan), a0e79c6 (pipeline and data),
+  222609b (tests and documentation). The user created them outside the sandbox.
+- One distinct raw-data UTC date exists. At least seven distinct successful
+  committed daily runs are required by the assignment.
 
-## Intended local commits
+## Phase 2
+- Added tests.yml (push/PR/manual) and daily.yml (12:23 UTC/manual).
+- Added explicit-publish daily Issue module; default preview makes no network call.
+- Pagination, idempotent reruns, baseline exclusions, no-change reports, large
+  reports, managed comment cleanup, and failure ordering covered offline.
+- Latest suite: 38 passed in 0.33s on Windows/Python 3.14.4.
+- Real-data local report preview completed without contacting GitHub.
+- git diff --check passed; Git emitted only line-ending conversion warnings.
+- Phase 2 has not been committed, pushed, or executed on GitHub. Hosted Linux
+  matrix and workflow execution remain unverified. No GitHub remote is configured.
+- README badge is an explicit OWNER/REPOSITORY template pending repository URL.
+- Intended local commits: (1) Issue publisher and workflows; (2) tests/docs.
 
-1. Plan/scaffold: PLAN.md, .gitignore, pyproject.toml, package __init__.py.
-2. Collection/history/data: pipeline.py, cli.py, config/, data/,
-   docs/source-verification.json.
-3. Tests/documentation: tests/, README.md, docs/validation.md.
-
-Phase 1 functionality is validated; local commits remain. Automation, Issues,
-Pages, market charts, and PWA behavior are later phases. At least seven distinct
-successful committed daily runs are required by the assignment.
+## Remaining
+- Create Phase 2 local commits; this session cannot write to .git.
+- Repository selection and approval before any push or Issue publication.
+- Confirm hosted workflows after approval and activation.
+- Today/Browse/Market website, six browser-calculated charts, installable PWA,
+  offline caching, and submission file remain later phases.
