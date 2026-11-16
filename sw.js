@@ -1,6 +1,6 @@
-const SHELL_CACHE = 'finance-watcher-shell-v2';
+const SHELL_CACHE = 'finance-watcher-shell-v3';
 const ROOT = new URL('./', self.location.href);
-const SHELL = ['./', './index.html', './browse.html', './market.html', './assets/style.css', './assets/app.mjs', './assets/metrics.mjs', './manifest.webmanifest', './assets/icon.svg', './assets/icon-192.png', './assets/icon-512.png'];
+const SHELL = ['./', './index.html', './browse.html', './market.html', './assets/style.css?v=location-3', './assets/app.mjs?v=location-3', './assets/metrics.mjs', './manifest.webmanifest', './assets/icon.svg', './assets/icon-192.png', './assets/icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL.map(path => new URL(path, ROOT).href))).then(() => self.skipWaiting()));
 });
@@ -14,7 +14,8 @@ self.addEventListener('fetch', event => {
   // app.mjs stores a validated history/status pair, so never mix cached data files.
   if (relative.startsWith('data/') || relative === '__last_data_pair') return;
   const path = new URL(relative || 'index.html', ROOT).href;
-  const allowed = SHELL.some(item => new URL(item, ROOT).href === path);
+  const asset = SHELL.find(item => new URL(item, ROOT).pathname === url.pathname || (relative === '' && item === './index.html'));
+  const allowed = Boolean(asset);
   if (!allowed) return;
   event.respondWith((async () => {
     const cache = await caches.open(SHELL_CACHE);
@@ -24,7 +25,7 @@ self.addEventListener('fetch', event => {
       await cache.put(path, response.clone());
       return response;
     } catch (error) {
-      const saved = await cache.match(path);
+      const saved = await cache.match(path) || await cache.match(new URL(asset, ROOT).href);
       if (saved) return saved;
       throw error;
     }

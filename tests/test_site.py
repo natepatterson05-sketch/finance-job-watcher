@@ -67,5 +67,5 @@ def test_all_precached_assets_exist():
     script = (ROOT / 'sw.js').read_text(encoding='utf-8')
     shell = re.search(r'const SHELL = \[(.*?)\];', script).group(1)
     for reference in re.findall(r"'([^']+)'", shell):
-        path = ROOT / reference
+        path = ROOT / urlsplit(reference).path
         assert path.exists(), reference

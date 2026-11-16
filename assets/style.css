@@ -5,14 +5,14 @@
 .field{min-width:0}
 input[type=search],select{font-size:14px;color:#20394b;color-scheme:light}
 select option{background:#fff;color:#20394b;font-size:14px}
-.location-field{position:relative}
-.location-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:42px;width:100%;padding:10px 12px;border-color:#cedbdf;text-align:left;font-size:14px;font-weight:400;line-height:1.5;color:#20394b;background:#fff}
-#location-value{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.location-field{position:relative;grid-column:1/-1;order:1}
+.location-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;width:100%;padding:10px 12px;border-color:#cedbdf;text-align:left;font-size:14px;font-weight:400;line-height:1.5;color:#20394b;background:#fff}
+#location-value{white-space:normal;overflow-wrap:anywhere}
 .location-toggle>span:last-child{flex-shrink:0;color:#526575}
-.location-menu{position:absolute;top:100%;right:0;z-index:30;width:min(480px,calc(100vw - 48px));margin-top:8px;padding:12px;background:#fff;color:#20394b;border:1px solid #bccdd4;border-radius:10px;box-shadow:0 14px 36px #172e4b26}
+.location-menu{position:static;width:100%;margin-top:4px;padding:16px;background:#fff;color:#142b3d;color-scheme:light;border:2px solid #a9bdc6;border-radius:8px;box-shadow:none}
 .location-menu input[type=search]{font-size:16px;min-height:44px;color:#20394b;background:#fff}
-.location-options{max-height:min(320px,45vh);overflow-y:auto;overscroll-behavior:contain;margin-top:10px;scrollbar-gutter:stable}
-.location-option{display:block;width:100%;min-height:44px;border:0;border-radius:5px;padding:12px;text-align:left;font-size:14px;font-weight:400;line-height:1.6;white-space:normal;overflow-wrap:anywhere;color:#20394b;background:#fff}
+.location-options{max-height:360px;overflow-y:auto;overscroll-behavior:contain;margin-top:12px;scrollbar-gutter:stable}
+.location-option{display:block;width:100%;min-height:56px;border:0;border-bottom:1px solid #dce5e8;border-radius:0;padding:16px;text-align:left;font-family:system-ui,sans-serif;font-size:18px;font-weight:500;line-height:1.65;letter-spacing:normal;white-space:normal;overflow-wrap:anywhere;color:#142b3d;background:#fff;opacity:1}
 .location-option:hover,.location-option:focus-visible{background:#edf5f6}
 .location-option[aria-pressed=true]{background:#dff1eb;color:#115a4d;font-weight:650}
 .location-feedback{margin:10px 4px 2px;color:#526575;font-size:12px;font-weight:400;line-height:1.5}
