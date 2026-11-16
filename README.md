@@ -4,10 +4,10 @@ A Financial Data Analytics course project tracking public employer job boards,
 with a title-based finance flag and reproducible daily history.
 
 
-[![Tests](https://github.com/OWNER/REPOSITORY/actions/workflows/tests.yml/badge.svg)](https://github.com/OWNER/REPOSITORY/actions/workflows/tests.yml)
+[![Tests](https://github.com/natepatterson05-sketch/finance-job-watcher/actions/workflows/tests.yml/badge.svg)](https://github.com/natepatterson05-sketch/finance-job-watcher/actions/workflows/tests.yml)
 
-Badge setup: replace `OWNER/REPOSITORY` with the approved repository path before
-publishing. No remote is configured yet, so this badge is a template.
+Repository: https://github.com/natepatterson05-sketch/finance-job-watcher
+The test badge reflects hosted workflow results.
 ## Current state
 
 Phase 1 collection and history are validated: 21 public Greenhouse boards
@@ -124,7 +124,8 @@ not qualify without a finance phrase. Review precision/recall in later phases.
 
 Daily GitHub Actions and GitHub Issues; tests on each push; GitHub Pages Today,
 Browse, and Market pages; six browser-calculated market charts; PWA manifest,
-service worker, and offline caching. No deployment or push has been performed.
+service worker, and offline caching are implemented. Browser verification and
+hosted run/deployment verification remain.
 
 
 
@@ -177,7 +178,7 @@ managed comments without removing user comments. Discovery is paginated. Do not
 remove the hidden markers from managed content.
 
 `--publish` explicitly performs external writes and requires `GH_TOKEN` and
-`GITHUB_REPOSITORY=OWNER/REPOSITORY`; it is invoked by the daily workflow.
+`GITHUB_REPOSITORY=natepatterson05-sketch/finance-job-watcher`; it is invoked by the daily workflow.
 No live Issue has been created during development. Fake-client tests cover
 publication, reruns, failure ordering, large reports, and pagination.
 
@@ -260,15 +261,14 @@ rendering, installation, and offline browser behavior still require manual or
 hosted verification: this session has no Node runtime, and sandboxed Edge exited
 before rendering.
 
-No Pages settings or external Site deployment have been changed. GitHub hosting,
-repository-specific badge URL, hosted workflow runs, and final submission file
-remain pending approval and repository details.
+The public repository and test badge are configured. Pages activation, hosted
+workflow verification, and the final submission file remain pending.
 
 
 ## GitHub publishing and daily Pages refresh
 
-Publishing was approved by the user. It has not yet been performed: this
-session's GitHub CLI requests are blocked by outbound socket restrictions.
+Publishing was approved, and the user created and pushed the public repository.
+This session's GitHub CLI requests remain blocked by outbound socket restrictions.
 GitHub CLI reports a configured account, but authentication cannot be verified
 from this sandbox; a network error must not be treated as proof of a bad token.
 
@@ -300,9 +300,10 @@ Check Tests, Daily job watcher, and Publish GitHub Pages runs. Fix failed runs
 before counting them as successful. At least seven distinct successful committed
 daily runs are needed by the deadline. Do not backdate snapshots.
 
-After repository creation, replace OWNER/REPOSITORY in the README badge with the
-actual path. The live site URL must be taken from a successful Pages deployment,
+The README badge uses the actual repository path. The live site URL must be
+taken from a successful Pages deployment,
 not inferred as proof that the site is live. The final submission file still
 requires the student's ID and verified repository/site URLs.
 
 [GitHub documentation: publishing sources and bot commits](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+
