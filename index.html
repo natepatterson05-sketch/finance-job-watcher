@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172e4b"><meta name="description" content="A daily view of finance hiring: new roles, open postings, and job-market trends from public employer boards.">
+<link rel="icon" href="./assets/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="./assets/icon-192.png">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./assets/style.css">
+<title>Today · Finance Job Watcher</title><script type="module" src="./assets/app.mjs"></script>
+</head>
+<body data-page="today">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="top-inner">
+<a class="brand" href="./index.html"><img src="./assets/icon.svg" alt="" width="36" height="36">Finance Job Watcher</a>
+<nav class="nav" aria-label="Main navigation"><a data-nav="today" href="./index.html">Today</a><a data-nav="browse" href="./browse.html">Browse</a><a data-nav="market" href="./market.html">Market</a></nav>
+<button type="button" id="install-app" hidden>Install app</button></div></header>
+<main id="main" class="workspace">
+<div class="page-heading"><div><p class="eyebrow">Finance hiring, observed daily</p><h1>Your daily hiring pulse.</h1><p class="subtitle">What changed across your watch list, and how the latest collection went.</p></div>
+<div class="run-meta"><span class="pill" id="connection">Loading data</span><small id="run-time">Checking the latest snapshot…</small></div></div>
+<div id="notice" role="status" aria-live="polite"></div><p id="loading" class="loading" role="status">Loading job-market data…</p>
+<div id="content" hidden>
+<section class="stats" aria-label="Latest run totals">
+<div class="stat"><p>Days with a successful observation</p><strong data-count="days_with_success">—</strong><small>Distinct UTC snapshot dates</small></div>
+<div class="stat accent"><p>Open postings</p><strong data-count="open">—</strong><small>All roles across the watch list</small></div>
+<div class="stat"><p>New today</p><strong data-count="new_today">—</strong><small>Excludes first-run inventory</small></div>
+<div class="stat"><p>Removed today</p><strong data-count="removed_today">—</strong><small>Confirmed on successful source fetches</small></div></section>
+<section class="panel"><div class="panel-head"><div><h2>New postings</h2><p>First observed on the latest run date, excluding baseline inventory.</p></div><span id="new-total" class="number">0</span></div><div id="new-list"></div></section>
+<section class="panel"><div class="panel-head"><div><h2>Removed postings</h2><p>No longer listed by a successfully fetched source.</p></div><span id="removed-total" class="number">0</span></div><div id="removed-list"></div></section>
+<section class="panel"><div class="panel-head"><div><h2>Source health</h2><p id="source-summary"></p></div></div><ul id="sources" class="source-grid"></ul><p class="panel-note">A failed fetch preserves the source’s last known posting states. On the first observation day, existing jobs become baseline inventory and do not count as new.</p></section></div><footer class="footer"><span>Finance Job Watcher · Financial Data Analytics<br>Public employer JSON boards. Dates and observations use UTC.</span><span>Install from your browser menu when supported.<br>Visit online once to save pages and the latest data for offline use.</span></footer></main></body></html>
