@@ -1,0 +1,192 @@
+{
+  "run_time": "2026-11-16T03:58:08.470440Z",
+  "status": "complete",
+  "sources": [
+    {
+      "employer": "Affirm",
+      "url": "https://boards-api.greenhouse.io/v1/boards/affirm/jobs",
+      "name": "affirm",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 217
+    },
+    {
+      "employer": "Airbnb",
+      "url": "https://boards-api.greenhouse.io/v1/boards/airbnb/jobs",
+      "name": "airbnb",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 212
+    },
+    {
+      "employer": "Airtable",
+      "url": "https://boards-api.greenhouse.io/v1/boards/airtable/jobs",
+      "name": "airtable",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 9
+    },
+    {
+      "employer": "Asana",
+      "url": "https://boards-api.greenhouse.io/v1/boards/asana/jobs",
+      "name": "asana",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 109
+    },
+    {
+      "employer": "Betterment",
+      "url": "https://boards-api.greenhouse.io/v1/boards/betterment/jobs",
+      "name": "betterment",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 28
+    },
+    {
+      "employer": "Block",
+      "url": "https://boards-api.greenhouse.io/v1/boards/block/jobs",
+      "name": "block",
+      "ats": "greenhouse",
+      "ok": false,
+      "count": 0,
+      "error": "Missing title or HTTPS URL"
+    },
+    {
+      "employer": "Brex",
+      "url": "https://boards-api.greenhouse.io/v1/boards/brex/jobs",
+      "name": "brex",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 286
+    },
+    {
+      "employer": "Carta",
+      "url": "https://boards-api.greenhouse.io/v1/boards/carta/jobs",
+      "name": "carta",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 77
+    },
+    {
+      "employer": "Chime",
+      "url": "https://boards-api.greenhouse.io/v1/boards/chime/jobs",
+      "name": "chime",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 71
+    },
+    {
+      "employer": "Coinbase",
+      "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs",
+      "name": "coinbase",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 265
+    },
+    {
+      "employer": "Datadog",
+      "url": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs",
+      "name": "datadog",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 382
+    },
+    {
+      "employer": "Dropbox",
+      "url": "https://boards-api.greenhouse.io/v1/boards/dropbox/jobs",
+      "name": "dropbox",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 44
+    },
+    {
+      "employer": "Duolingo",
+      "url": "https://boards-api.greenhouse.io/v1/boards/duolingo/jobs",
+      "name": "duolingo",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 59
+    },
+    {
+      "employer": "Figma",
+      "url": "https://boards-api.greenhouse.io/v1/boards/figma/jobs",
+      "name": "figma",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 139
+    },
+    {
+      "employer": "Flexport",
+      "url": "https://boards-api.greenhouse.io/v1/boards/flexport/jobs",
+      "name": "flexport",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 204
+    },
+    {
+      "employer": "Gusto",
+      "url": "https://boards-api.greenhouse.io/v1/boards/gusto/jobs",
+      "name": "gusto",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 75
+    },
+    {
+      "employer": "HubSpot",
+      "url": "https://boards-api.greenhouse.io/v1/boards/hubspot/jobs",
+      "name": "hubspot",
+      "ats": "greenhouse",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "employer": "Reddit",
+      "url": "https://boards-api.greenhouse.io/v1/boards/reddit/jobs",
+      "name": "reddit",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 145
+    },
+    {
+      "employer": "Robinhood",
+      "url": "https://boards-api.greenhouse.io/v1/boards/robinhood/jobs",
+      "name": "robinhood",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 165
+    },
+    {
+      "employer": "SoFi",
+      "url": "https://boards-api.greenhouse.io/v1/boards/sofi/jobs",
+      "name": "sofi",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 48
+    },
+    {
+      "employer": "Stripe",
+      "url": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs",
+      "name": "stripe",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 785
+    },
+    {
+      "employer": "Toast",
+      "url": "https://boards-api.greenhouse.io/v1/boards/toast/jobs",
+      "name": "toast",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 354
+    },
+    {
+      "employer": "Twilio",
+      "url": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs",
+      "name": "twilio",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 113
+    }
+  ]
+}

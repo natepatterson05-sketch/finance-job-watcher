@@ -1,0 +1,127 @@
+{
+  "run_time": "2026-11-16T03:58:08.470440Z",
+  "first_run_date": "2026-11-16",
+  "days_with_success": 1,
+  "open": 3787,
+  "new_today": 0,
+  "removed_today": 0,
+  "sources": [
+    {
+      "name": "affirm",
+      "ok": true,
+      "count": 217
+    },
+    {
+      "name": "airbnb",
+      "ok": true,
+      "count": 212
+    },
+    {
+      "name": "airtable",
+      "ok": true,
+      "count": 9
+    },
+    {
+      "name": "asana",
+      "ok": true,
+      "count": 109
+    },
+    {
+      "name": "betterment",
+      "ok": true,
+      "count": 28
+    },
+    {
+      "name": "block",
+      "ok": false,
+      "count": 0,
+      "error": "Missing title or HTTPS URL"
+    },
+    {
+      "name": "brex",
+      "ok": true,
+      "count": 286
+    },
+    {
+      "name": "carta",
+      "ok": true,
+      "count": 77
+    },
+    {
+      "name": "chime",
+      "ok": true,
+      "count": 71
+    },
+    {
+      "name": "coinbase",
+      "ok": true,
+      "count": 265
+    },
+    {
+      "name": "datadog",
+      "ok": true,
+      "count": 382
+    },
+    {
+      "name": "dropbox",
+      "ok": true,
+      "count": 44
+    },
+    {
+      "name": "duolingo",
+      "ok": true,
+      "count": 59
+    },
+    {
+      "name": "figma",
+      "ok": true,
+      "count": 139
+    },
+    {
+      "name": "flexport",
+      "ok": true,
+      "count": 204
+    },
+    {
+      "name": "gusto",
+      "ok": true,
+      "count": 75
+    },
+    {
+      "name": "hubspot",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "name": "reddit",
+      "ok": true,
+      "count": 145
+    },
+    {
+      "name": "robinhood",
+      "ok": true,
+      "count": 165
+    },
+    {
+      "name": "sofi",
+      "ok": true,
+      "count": 48
+    },
+    {
+      "name": "stripe",
+      "ok": true,
+      "count": 785
+    },
+    {
+      "name": "toast",
+      "ok": true,
+      "count": 354
+    },
+    {
+      "name": "twilio",
+      "ok": true,
+      "count": 113
+    }
+  ]
+}
