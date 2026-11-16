@@ -88,7 +88,7 @@ function today(rows, status) {
 }
 function browse(rows, status) {
   const day = runDay(status), shortlist = readShortlist(), form = $('#filters');
-  for (const [name, key] of [['employer', 'employer'], ['location', 'location']]) {
+  for (const [name, key] of [['employer', 'employer']]) {
     const select = form.elements[name];
     const values = [...new Set(rows.filter(r => r.status === 'open').map(r => r[key]).filter(Boolean))].sort();
     for (const value of values) { const option = el('option', value); option.value = value; select.append(option); }
@@ -102,8 +102,44 @@ function browse(rows, status) {
     $('#shortlist-count').textContent = `${shortlist.size} saved`;
     $('#browse-list').replaceChildren(postingTable(filtered, {shortlist, onChange: render, day}));
   }
+  const picker = $('#location-picker'), toggle = $('#location-toggle'), menu = $('#location-menu');
+  const search = $('#location-search'), options = $('#location-options');
+  const locations = [...new Set(rows.filter(r => r.status === 'open').map(r => r.location).filter(Boolean))].sort();
+  function closeLocation(restoreFocus = false) {
+    menu.hidden = true; toggle.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) toggle.focus();
+  }
+  function locationOptions() {
+    const query = search.value.trim().toLowerCase();
+    const matches = locations.filter(value => value.toLowerCase().includes(query));
+    options.replaceChildren();
+    for (const value of ['', ...matches]) {
+      const selected = form.elements.location.value === value;
+      const button = el('button', value || 'All locations', 'location-option');
+      button.type = 'button'; button.setAttribute('aria-pressed', String(selected));
+      button.addEventListener('click', () => {
+        form.elements.location.value = value;
+        $('#location-value').textContent = value || 'All locations';
+        closeLocation(true); render();
+      });
+      options.append(button);
+    }
+    $('#location-feedback').textContent = matches.length ? `${matches.length} locations` : 'No matching locations. Try another search.';
+  }
+  toggle.addEventListener('click', () => {
+    if (!menu.hidden) { closeLocation(); return; }
+    menu.hidden = false; toggle.setAttribute('aria-expanded', 'true');
+    search.value = ''; locationOptions(); search.focus();
+  });
+  search.addEventListener('input', locationOptions);
+  picker.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !menu.hidden) { event.preventDefault(); event.stopPropagation(); closeLocation(true); }
+    if (event.key === 'ArrowDown' && event.target === search) { event.preventDefault(); options.querySelector('button')?.focus(); }
+  });
+  picker.addEventListener('focusout', event => { if (!picker.contains(event.relatedTarget)) closeLocation(); });
+  document.addEventListener('click', event => { if (!picker.contains(event.target)) closeLocation(); });
   form.addEventListener('input', render); form.addEventListener('submit', event => event.preventDefault());
-  $('#reset-filters').addEventListener('click', () => { form.reset(); render(); }); render();
+  $('#reset-filters').addEventListener('click', () => { form.reset(); form.elements.location.value = ''; $('#location-value').textContent = 'All locations'; closeLocation(); render(); }); render();
 }
 const SVG = 'http://www.w3.org/2000/svg';
 function svgNode(tag, attrs = {}, text) {

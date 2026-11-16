@@ -1,4 +1,4 @@
-const SHELL_CACHE = 'finance-watcher-shell-v1';
+const SHELL_CACHE = 'finance-watcher-shell-v2';
 const ROOT = new URL('./', self.location.href);
 const SHELL = ['./', './index.html', './browse.html', './market.html', './assets/style.css', './assets/app.mjs', './assets/metrics.mjs', './manifest.webmanifest', './assets/icon.svg', './assets/icon-192.png', './assets/icon-512.png'];
 self.addEventListener('install', event => {
