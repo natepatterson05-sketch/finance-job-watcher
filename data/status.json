@@ -1,8 +1,8 @@
 {
-  "run_time": "2026-11-16T03:58:08.470440Z",
+  "run_time": "2026-11-16T04:55:21.292504Z",
   "first_run_date": "2026-11-16",
   "days_with_success": 1,
-  "open": 3787,
+  "open": 3788,
   "new_today": 0,
   "removed_today": 0,
   "sources": [
@@ -30,12 +30,6 @@
       "name": "betterment",
       "ok": true,
       "count": 28
-    },
-    {
-      "name": "block",
-      "ok": false,
-      "count": 0,
-      "error": "Missing title or HTTPS URL"
     },
     {
       "name": "brex",
@@ -88,12 +82,6 @@
       "count": 75
     },
     {
-      "name": "hubspot",
-      "ok": false,
-      "count": 0,
-      "error": "HTTP Error 404: Not Found"
-    },
-    {
       "name": "reddit",
       "ok": true,
       "count": 145
@@ -116,7 +104,7 @@
     {
       "name": "toast",
       "ok": true,
-      "count": 354
+      "count": 355
     },
     {
       "name": "twilio",
