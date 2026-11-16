@@ -12,7 +12,7 @@ publishing. No remote is configured yet, so this badge is a template.
 
 Phase 1 collection and history are validated: 21 public Greenhouse boards
 returned 3,787 postings on 2026-11-16 UTC, including 111 finance-related titles.
-All 38 offline pytest cases pass, and replaying the real snapshots produces a
+All 46 offline pytest cases pass, and replaying the real snapshots produces a
 byte-identical history.csv. No accepted board exceeds 5,000 jobs.
 Block failed posting validation and HubSpot returned 404; both are excluded from
 the active 21-employer registry. See docs/source-verification.json for per-board
@@ -184,3 +184,82 @@ publication, reruns, failure ordering, large reports, and pagination.
 GitHub references: [workflow token permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token),
 [Issue API](https://docs.github.com/en/rest/issues/issues),
 [workflow triggering](https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow).
+
+
+## Website and local preview
+
+The site is buildless: `index.html` (Today), `browse.html` (Browse), and
+`market.html` (Market) share `assets/style.css` and `assets/app.mjs`. No fonts,
+charts, JavaScript packages, or data are loaded from a third-party service.
+`assets/metrics.mjs` holds the browser calculations and CSV parser.
+
+From regular PowerShell, start a server (do not double-click the HTML files):
+
+```powershell
+cd C:\Users\natep\job-watcher
+.\.venv\Scripts\python.exe -m http.server 8000 --bind 127.0.0.1
+```
+
+Open **http://127.0.0.1:8000/** in Edge or Chrome. Keep that PowerShell window
+open while previewing; press Ctrl+C when finished. Root-relative deployment is
+not assumed: links, data URLs, service worker scope, and manifest all use the
+repository subpath, so the site can later live at a GitHub Pages project URL.
+`.nojekyll` allows direct static serving from the repository root.
+
+Today reads the four counts from status.json and calculates its posting lists
+from history using the status run date. Source statuses include every attempt
+in that run. Browse defaults to finance roles, supports all roles, title search,
+employer/location/minimum-days-observed filters, first-seen sort, and a saved-only
+view. Stars persist in this browser's localStorage. Saved IDs remain after roles
+close, but Browse shows only open postings. Private browsing or cleared storage
+can remove your shortlist; it does not sync between devices.
+
+Market computes all six required findings in the browser. The last run's UTC
+date is the reference date. Missing publication dates are not inferred. Median
+duration excludes first-run and currently open jobs. The seven-day denominator
+includes eligible still-open jobs and excludes recent and first-run jobs. Open
+location charts use the top ten supplied location labels without geocoding.
+Each nonempty chart includes an expandable data table. Empty samples show an
+explicit no-data state instead of invented measurements. The history stores
+latest state, so removed-date charts cannot reconstruct earlier removals of
+reopened roles. Calendar days with no observations may appear as zero; they do
+not prove the market had no activity.
+
+### Install and offline behavior
+
+`manifest.webmanifest` declares standalone display and 192/512 PNG icons.
+`sw.js` precaches all three pages and shared assets. Online visits request data
+from the network with no-store; the application validates both files and stores
+them as one Cache Storage snapshot. A failed network load falls back to that
+saved pair, with a saved-snapshot notice. A first-ever offline visit cannot load
+data. Browser cache eviction can remove saved data. Service workers require
+HTTPS (GitHub Pages) or localhost. Installation UI varies by browser; use the
+browser's install menu or the Install app button when offered. No install prompt
+is promised for browsers that do not support it.
+
+For manual QA:
+
+1. Visit all three pages online and confirm the live totals match data/status.json.
+2. In Browse, star a role, reload, and enable My shortlist. Try all filters and
+   both first-seen orders. Check the finance-only default.
+3. Open http://127.0.0.1:8000/tests/web/runner.html. It should report PASS with
+   the metric assertion count; report any FAIL text before committing.
+4. In browser developer tools, wait for the service worker to activate. Select
+   network Offline, reload each page, and confirm the saved-snapshot message
+   and data. Then restore network Online and reload to fetch current data.
+5. Check the browser's manifest/install UI and launch the installed app. On a
+   narrow screen, verify navigation, filters, scrollable tables, and charts.
+
+The browser test page and Node use the exact production metrics module. With
+Node available, run `node tests/web/metrics.test.mjs`. Push CI now runs those
+assertions plus JS syntax checks. Python tests cover page references, shared
+navigation, chart-section structure, manifest scope, PNG sizes, and precached
+asset existence. Local pytest: 46 passed. Local HTTP checks: all pages, modules,
+manifest, worker, and both data endpoints returned 200. JavaScript execution,
+rendering, installation, and offline browser behavior still require manual or
+hosted verification: this session has no Node runtime, and sandboxed Edge exited
+before rendering.
+
+No Pages settings or external Site deployment have been changed. GitHub hosting,
+repository-specific badge URL, hosted workflow runs, and final submission file
+remain pending approval and repository details.

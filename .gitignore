@@ -6,3 +6,6 @@ __pycache__/
 
 .uv-cache/
 .python/
+
+.browser-profile/
+.browser-test-output.txt

@@ -84,3 +84,15 @@ Daily workflow, push/PR tests, and explicit-publish daily Issue synchronization
 are implemented locally. Eleven offline Issue tests pass (38 tests total).
 Hosted execution, a functional repository badge, and activation remain pending
 repository selection and approval to push. Website and PWA remain later phases.
+
+## Website/PWA implementation status
+- Implemented Today, Browse, Market and shared responsive styles/navigation.
+- Browser-only CSV parsing, all six specified metrics/charts, title filtering,
+  role toggle, employer/location/duration filters, sort, persistent shortlist.
+- Added manifest, install icons, service worker, and consistent data-pair cache.
+- 46 local pytest cases pass. HTTP 200 verified for every page, module, worker,
+  manifest, and data file. JavaScript assertion suite added to push CI.
+- Browser execution remains unverified: Node absent and local Edge failed to
+  initialize in the sandbox. Browser runner and manual QA documented in README.
+- This phase is not yet committed or published. Intended commits: website,
+  PWA/offline assets, then tests/documentation.

@@ -33,3 +33,14 @@
 - Confirm hosted workflows after approval and activation.
 - Today/Browse/Market website, six browser-calculated charts, installable PWA,
   offline caching, and submission file remain later phases.
+
+## Website/PWA local validation
+- Added Today/Browse/Market, browser metrics/charts, shortlist, manifest/icons,
+  service worker, and paired data cache. All assets served with HTTP 200 locally.
+- 46 pytest cases passed in 0.38s, including eight new site integrity checks.
+- Metric assertion suite is written and wired into push CI; not executed locally
+  because Node is absent. Edge headless startup exited 2147483651 before rendering
+  due to sandbox/system initialization errors. No screenshot or browser success
+  is claimed. Browser manual checks remain necessary (see README).
+- Local HTTP server was used only for checks and stopped after validation.
+- No push, Issue publication, Pages configuration, or external deployment.
