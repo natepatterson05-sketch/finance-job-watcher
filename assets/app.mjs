@@ -91,6 +91,28 @@ function today(rows, status) {
   }
   $('#source-summary').textContent = `${status.sources.filter(s => s.ok).length} of ${status.sources.length} sources succeeded in the latest attempt`;
 }
+function postingCards(rows, shortlist, onChange, day) {
+  if (!rows.length) return el('p', 'No open roles match these filters. Try another employer, location, or title.', 'empty');
+  const grid = el('div', undefined, 'job-grid');
+  for (const row of rows) {
+    const card = el('article', undefined, 'job-card');
+    const top = el('div', undefined, 'job-card-top');
+    const identity = el('div', undefined, 'employer-identity');
+    const mark = el('span', row.employer.slice(0, 2).toUpperCase(), 'employer-mark');
+    mark.setAttribute('aria-hidden', 'true');
+    identity.append(mark, el('span', row.employer));
+    top.append(identity, star(row, shortlist, onChange));
+    const heading = el('h3'); heading.append(safeLink(row));
+    const badges = el('div', undefined, 'job-badges');
+    if (row.in_role === 'true') badges.append(el('span', 'Finance role', 'tag'));
+    if (row.first_run === 'true') badges.append(el('span', 'Baseline inventory', 'tag neutral'));
+    const location = el('p', row.location || 'Location not provided', 'job-location');
+    const bottom = el('div', undefined, 'job-card-bottom');
+    bottom.append(el('span', `First seen ${row.first_seen}`), el('span', `${daysBetween(row.first_seen, day)} days observed`));
+    card.append(top, heading, location, badges, bottom); grid.append(card);
+  }
+  return grid;
+}
 function browse(rows, status) {
   const day = runDay(status), shortlist = readShortlist(), form = $('#filters');
   for (const [name, key] of [['employer', 'employer']]) {
@@ -105,7 +127,7 @@ function browse(rows, status) {
       shortlistOnly: form.elements.shortlistOnly.checked}, day, shortlist);
     $('#results-count').textContent = `${count(filtered.length)} open postings`;
     $('#shortlist-count').textContent = `${shortlist.size} saved`;
-    $('#browse-list').replaceChildren(postingTable(filtered, {shortlist, onChange: render, day}));
+    $('#browse-list').replaceChildren(postingCards(filtered, shortlist, render, day));
   }
   const picker = $('#location-picker'), toggle = $('#location-toggle'), menu = $('#location-menu');
   const search = $('#location-search'), options = $('#location-options');
@@ -184,6 +206,10 @@ function chart(target, entries, series = [{key: 'count', label: 'Postings', colo
 }
 function market(rows, status) {
   const m = marketMetrics(rows, status), recent = m.daily.at(-1), totalNew = m.daily.reduce((sum, d) => sum + d.all, 0);
+  $('#summary-open').textContent = count(m.open);
+  $('#summary-new').textContent = count(totalNew);
+  $('#summary-removed').textContent = count(rows.filter(row => row.status === 'removed').length);
+  $('#summary-median').textContent = m.median === null ? 'Not yet' : `${m.median} days`;
   $('#market-asof').textContent = `As of ${m.day} UTC · ${count(rows.length)} unique postings observed`;
   $('#finding-new').textContent = `${count(totalNew)} new postings observed after baseline`;
   $('#explain-new').textContent = `${count(recent?.all || 0)} new postings were first seen on the latest run date. Teal shows all roles; navy shows finance roles. Baseline postings are excluded. Zero bars can also mean no successful observations that day.`;

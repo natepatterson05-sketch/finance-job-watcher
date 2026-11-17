@@ -4,8 +4,8 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#123d33"><meta name="description" content="A daily view of finance hiring: new roles, open postings, and job-market trends from public employer boards.">
 <link rel="icon" href="./assets/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="./assets/icon-192.png">
-<link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./assets/style.css?v=editorial-4">
-<title>Browse · Finance Job Watcher</title><script type="module" src="./assets/app.mjs?v=editorial-4"></script>
+<link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./assets/style.css?v=editorial-5">
+<title>Browse · Finance Job Watcher</title><script type="module" src="./assets/app.mjs?v=editorial-5"></script>
 </head>
 <body data-page="browse">
 <a class="skip" href="#main">Skip to content</a>
@@ -18,7 +18,7 @@
 <div class="run-meta"><span class="pill" id="connection">Loading data</span><small id="run-time">Checking the latest snapshot…</small><div class="hero-facts"><div><strong id="hero-employers">—</strong><span>employers observed</span></div><div><strong id="hero-finance">—</strong><span>open finance roles</span></div></div><p class="hero-caption">Public employer boards. A fresh perspective, every day.</p></div></div>
 <div id="notice" role="status" aria-live="polite"></div><p id="loading" class="loading" role="status">Loading job-market data…</p>
 <div id="content" hidden>
-<div class="section-intro"><div><p class="eyebrow">Your search, refined</p><h2>Find a role that fits.</h2></div><span class="section-hint">A star today. A next step tomorrow.</span></div><section class="panel filter-panel" aria-label="Posting filters"><form id="filters">
+<div class="section-intro"><div><p class="eyebrow">Your search, refined</p><h2>Find a role that fits.</h2></div><span class="section-hint">Your next chapter starts with a closer look.</span></div><section class="panel filter-panel" aria-label="Posting filters"><form id="filters">
 <div class="filter-top"><label class="toggle"><input type="checkbox" name="roleOnly" checked> Finance roles only</label><label class="toggle"><input type="checkbox" name="shortlistOnly"> My shortlist <span id="shortlist-count" class="number">0 saved</span></label><button type="button" id="reset-filters">Reset filters</button></div>
 <div class="filters"><label class="field">Search titles<input type="search" name="query" placeholder="Financial analyst, FP&amp;A…"></label>
 <label class="field">Employer<select name="employer"><option value="">All employers</option></select></label>
@@ -32,5 +32,5 @@
 </div></div>
 <label class="field">Days observed open<select name="days"><option value="">Any duration</option><option value="7">7+ days</option><option value="14">14+ days</option><option value="30">30+ days</option></select></label>
 <label class="field">First-seen order<select name="sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></label></div></form></section>
-<section class="panel"><div class="results-top"><strong id="results-count" role="status" aria-live="polite"></strong><span>Star a role to save it on this browser</span></div><div id="browse-list"></div></section>
+<section class="browse-results"><div class="results-top"><strong id="results-count" role="status" aria-live="polite"></strong><span>Curated by your filters · Saved on this browser</span></div><div id="browse-list"></div></section>
 <p class="subtitle">Days open means days since first observation, as of the last run. Baseline jobs may have been open longer. Saved roles stay in your shortlist after reloading; this view shows open postings only.</p></div><footer class="footer"><span class="footer-brand">Finance Job Watcher<small>A Financial Data Analytics project</small></span><span>Built on public employer data.<br>Observed daily. All dates in UTC.</span><span>Your watch list, wherever you are.<br>Install from your browser menu for offline access.</span></footer></main></body></html>
