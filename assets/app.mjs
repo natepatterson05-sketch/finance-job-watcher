@@ -65,7 +65,12 @@ function postingTable(rows, {shortlist = null, onChange = () => {}, day} = {}) {
     const title = el('td'); title.append(safeLink(row));
     if (row.in_role === 'true') title.append(el('span', 'Finance', 'tag'));
     if (row.first_run === 'true') title.append(el('span', 'Baseline', 'tag neutral'));
-    tr.append(title, el('td', row.employer), el('td', row.location || 'Not provided'));
+    const employer = el('td');
+    const identity = el('div', undefined, 'employer-identity');
+    const mark = el('span', row.employer.slice(0, 2).toUpperCase(), 'employer-mark'); mark.setAttribute('aria-hidden', 'true');
+    identity.append(mark, el('span', row.employer)); employer.append(identity);
+    const location = el('td', row.location || 'Not provided', 'posting-location');
+    tr.append(title, employer, location);
     const first = el('td', row.first_seen);
     if (day) first.append(el('small', `${daysBetween(row.first_seen, day)} days observed`));
     tr.append(first); tbody.append(tr);
@@ -146,7 +151,7 @@ function svgNode(tag, attrs = {}, text) {
   const node = document.createElementNS(SVG, tag); for (const [k, value] of Object.entries(attrs)) node.setAttribute(k, value);
   if (text !== undefined) node.textContent = text; return node;
 }
-function chart(target, entries, series = [{key: 'count', label: 'Postings', color: '#087f72'}]) {
+function chart(target, entries, series = [{key: 'count', label: 'Postings', color: '#258871'}]) {
   const host = $(target); host.replaceChildren();
   if (!entries.length || entries.every(e => series.every(s => !e[s.key]))) { host.append(el('p', 'No qualifying observations yet.', 'empty')); return; }
   const labelWidth = 230, plotWidth = 420, rowHeight = series.length > 1 ? 48 : 34;
@@ -182,7 +187,7 @@ function market(rows, status) {
   $('#market-asof').textContent = `As of ${m.day} UTC · ${count(rows.length)} unique postings observed`;
   $('#finding-new').textContent = `${count(totalNew)} new postings observed after baseline`;
   $('#explain-new').textContent = `${count(recent?.all || 0)} new postings were first seen on the latest run date. Teal shows all roles; navy shows finance roles. Baseline postings are excluded. Zero bars can also mean no successful observations that day.`;
-  chart('#chart-new', m.daily.map(d => ({...d, label: d.date})), [{key: 'all', label: 'All roles', color: '#087f72'}, {key: 'role', label: 'Finance roles', color: '#172e4b'}]);
+  chart('#chart-new', m.daily.map(d => ({...d, label: d.date})), [{key: 'all', label: 'All roles', color: '#258871'}, {key: 'role', label: 'Finance roles', color: '#b87939'}]);
   const removed = m.daily.reduce((sum, d) => sum + d.removed, 0);
   $('#finding-removed').textContent = `${count(removed)} postings currently recorded as removed`;
   $('#explain-removed').textContent = 'Counts use the removed date in the current history. A failed source cannot cause a removal. Reopened postings have no removed date, so earlier removal episodes are not counted here.';
@@ -209,6 +214,8 @@ async function main() {
   $('#install-app').addEventListener('click', async () => { if (installPrompt) { await installPrompt.prompt(); installPrompt = null; $('#install-app').hidden = true; } });
   try {
     const {rows, status, offline, cachedAt} = await loadData();
+    $('#hero-employers').textContent = count(new Set(rows.map(row => row.employer)).size);
+    $('#hero-finance').textContent = count(rows.filter(row => row.status === 'open' && row.in_role === 'true').length);
     $('#run-time').textContent = `Last run ${status.run_time.replace('T', ' ').replace(/\.\d+Z$/, ' UTC').replace('Z', ' UTC')}`;
     $('#connection').textContent = offline ? 'Saved snapshot' : 'Live data';
     if (offline) notify(`Network unavailable. Showing the last loaded snapshot, saved ${new Date(cachedAt).toLocaleString()}.`);
