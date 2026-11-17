@@ -204,20 +204,67 @@ function chart(target, entries, series = [{key: 'count', label: 'Postings', colo
   const table = el('table'), head = el('tr'); head.append(el('th', 'Category'), ...series.map(s => el('th', s.label))); const thead = el('thead'); thead.append(head); table.append(thead);
   const tbody = el('tbody'); for (const e of entries) { const tr = el('tr'); tr.append(el('td', e.label), ...series.map(s => el('td', e[s.key]))); tbody.append(tr); } table.append(tbody); details.append(table); host.append(details);
 }
+function timeline(target, entries, series) {
+  chart(target, entries, series);
+  const host = $(target), previous = host.querySelector('svg');
+  if (!previous) return;
+  const left = 55, top = 24, width = 610, height = 190, bottom = top + height;
+  const max = Math.max(1, ...entries.flatMap(entry => series.map(s => entry[s.key])));
+  const x = i => left + (entries.length > 1 ? i / (entries.length - 1) : .5) * width;
+  const y = value => bottom - value / max * height;
+  const svg = svgNode('svg', {viewBox:'0 0 720 260', role:'img', 'aria-label':host.dataset.label});
+  svg.append(svgNode('title', {}, host.dataset.label));
+  for (let tick = 0; tick <= 4; tick++) {
+    const value = max * tick / 4, position = y(value);
+    svg.append(svgNode('line', {x1:left,x2:left+width,y1:position,y2:position,stroke:'#e0e8d9','stroke-dasharray':'3 5'}));
+    svg.append(svgNode('text', {x:left-12,y:position+4,'text-anchor':'end',fill:'#6b7971','font-size':11}, Number(value.toFixed(1))));
+  }
+  series.forEach(s => {
+    const points = entries.map((entry,i) => `${x(i)},${y(entry[s.key])}`).join(' ');
+    svg.append(svgNode('polyline', {points, fill:'none',stroke:s.color,'stroke-width':3,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    entries.forEach((entry,i) => {
+      const dot = svgNode('circle', {cx:x(i),cy:y(entry[s.key]),r:entries.length > 45 ? 2 : 4,fill:s.color,stroke:'#fffefb','stroke-width':1.5});
+      dot.append(svgNode('title',{},`${entry.label}: ${s.label} ${entry[s.key]}`)); svg.append(dot);
+    });
+  });
+  const interval = Math.max(1,Math.ceil(entries.length/5));
+  entries.forEach((entry,i) => {
+    if (i % interval !== 0 && i !== entries.length-1) return;
+    // Avoid overlapping the final two date labels.
+    if (i !== entries.length-1 && entries.length-1-i < interval && i > 0) return;
+    svg.append(svgNode('text',{x:x(i),y:bottom+26,'text-anchor':'middle',fill:'#6b7971','font-size':10},entry.label.slice(5)));
+  });
+  previous.replaceWith(svg);
+}
+function removalRing(target, eligible, fast) {
+  if (!eligible) return;
+  const host = $(target), previous = host.querySelector('svg');
+  if (!previous) return;
+  const percentage = fast / eligible * 100, radius = 69, circumference = 2*Math.PI*radius;
+  const svg = svgNode('svg',{viewBox:'0 0 400 240',role:'img','aria-label':`${percentage.toFixed(1)} percent removed within seven days; ${fast} of ${eligible} eligible postings`});
+  svg.append(svgNode('title',{},host.dataset.label));
+  svg.append(svgNode('circle',{cx:200,cy:113,r:radius,fill:'none',stroke:'#e9eee1','stroke-width':17}));
+  svg.append(svgNode('circle',{cx:200,cy:113,r:radius,fill:'none',stroke:'#258871','stroke-width':17,'stroke-dasharray':`${circumference*percentage/100} ${circumference}`,'stroke-linecap':percentage > 0 ? 'round' : 'butt',transform:'rotate(-90 200 113)'}));
+  svg.append(svgNode('text',{x:200,y:115,'text-anchor':'middle',fill:'#123d33','font-family':'Georgia,serif','font-size':35},`${percentage.toFixed(1)}%`));
+  svg.append(svgNode('text',{x:200,y:139,'text-anchor':'middle',fill:'#6b7971','font-size':10},'REMOVED WITHIN 7 DAYS'));
+  svg.append(svgNode('text',{x:200,y:220,'text-anchor':'middle',fill:'#6b7971','font-size':12},`${fast} of ${eligible} eligible postings`));
+  previous.replaceWith(svg);
+}
 function market(rows, status) {
   const m = marketMetrics(rows, status), recent = m.daily.at(-1), totalNew = m.daily.reduce((sum, d) => sum + d.all, 0);
   $('#summary-open').textContent = count(m.open);
   $('#summary-new').textContent = count(totalNew);
   $('#summary-removed').textContent = count(rows.filter(row => row.status === 'removed').length);
   $('#summary-median').textContent = m.median === null ? 'Not yet' : `${m.median} days`;
+  $('#report-observations').textContent = `${count(status.days_with_success)} successful observation days · Watching since ${status.first_run_date || m.day}`;
   $('#market-asof').textContent = `As of ${m.day} UTC · ${count(rows.length)} unique postings observed`;
   $('#finding-new').textContent = `${count(totalNew)} new postings observed after baseline`;
   $('#explain-new').textContent = `${count(recent?.all || 0)} new postings were first seen on the latest run date. Teal shows all roles; navy shows finance roles. Baseline postings are excluded. Zero bars can also mean no successful observations that day.`;
-  chart('#chart-new', m.daily.map(d => ({...d, label: d.date})), [{key: 'all', label: 'All roles', color: '#258871'}, {key: 'role', label: 'Finance roles', color: '#b87939'}]);
+  timeline('#chart-new', m.daily.map(d => ({...d, label: d.date})), [{key: 'all', label: 'All roles', color: '#258871'}, {key: 'role', label: 'Finance roles', color: '#b87939'}]);
   const removed = m.daily.reduce((sum, d) => sum + d.removed, 0);
   $('#finding-removed').textContent = `${count(removed)} postings currently recorded as removed`;
   $('#explain-removed').textContent = 'Counts use the removed date in the current history. A failed source cannot cause a removal. Reopened postings have no removed date, so earlier removal episodes are not counted here.';
-  chart('#chart-removed', m.daily.map(d => ({label: d.date, count: d.removed})));
+  timeline('#chart-removed', m.daily.map(d => ({label: d.date, count: d.removed})), [{key:'count',label:'Removed postings',color:'#b87939'}]);
   $('#finding-employers').textContent = m.employers.length ? `${m.employers[0].label} leads with ${count(m.employers[0].count)} open postings` : 'No open postings observed';
   $('#explain-employers').textContent = `The full watch list currently has ${count(m.open)} open postings. These counts include all roles and retain the last known state of sources that failed.`;
   chart('#chart-employers', m.employers);
@@ -229,6 +276,7 @@ function market(rows, status) {
   $('#finding-share').textContent = m.share === null ? 'Seven-day removal share needs more history' : `${(m.share * 100).toFixed(1)}% of eligible postings were removed within seven days`;
   $('#explain-share').textContent = `${count(m.fast)} of ${count(m.eligible)} eligible postings were removed within seven days of first observation. Eligibility excludes baseline postings and requires first-seen at least seven days before ${m.day}. Still-open eligible postings remain in the denominator.`;
   chart('#chart-share', [{label:'Removed within 7 days',count:m.fast},{label:'Other eligible postings',count:m.eligible - m.fast}]);
+  removalRing('#chart-share', m.eligible, m.fast);
   $('#finding-locations').textContent = m.locations.length ? `${m.locations[0].label} is the most common open-posting location` : 'No open locations observed';
   $('#explain-locations').textContent = 'The ten most common location labels among all open postings. Labels are kept as supplied by employers; multi-location postings count once under their supplied label.';
   chart('#chart-locations', m.locations.slice(0, 10));

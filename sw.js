@@ -1,6 +1,6 @@
-const SHELL_CACHE = 'finance-watcher-shell-v5';
+const SHELL_CACHE = 'finance-watcher-shell-v6';
 const ROOT = new URL('./', self.location.href);
-const SHELL = ['./', './index.html', './browse.html', './market.html', './assets/style.css?v=editorial-5', './assets/app.mjs?v=editorial-5', './assets/metrics.mjs', './manifest.webmanifest', './assets/icon.svg', './assets/icon-192.png', './assets/icon-512.png'];
+const SHELL = ['./', './index.html', './browse.html', './market.html', './assets/style.css?v=report-6', './assets/app.mjs?v=report-6', './assets/metrics.mjs', './manifest.webmanifest', './assets/icon.svg', './assets/icon-192.png', './assets/icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL.map(path => new URL(path, ROOT).href))).then(() => self.skipWaiting()));
 });
