@@ -1,20 +1,20 @@
 {
-  "run_time": "2026-11-19T20:49:31.032829Z",
+  "run_time": "2026-11-20T20:34:05.841418Z",
   "first_run_date": "2026-11-16",
-  "days_with_success": 4,
-  "open": 3737,
-  "new_today": 116,
-  "removed_today": 133,
+  "days_with_success": 5,
+  "open": 3741,
+  "new_today": 86,
+  "removed_today": 84,
   "sources": [
     {
       "name": "affirm",
       "ok": true,
-      "count": 227
+      "count": 218
     },
     {
       "name": "airbnb",
       "ok": true,
-      "count": 201
+      "count": 203
     },
     {
       "name": "airtable",
@@ -24,7 +24,7 @@
     {
       "name": "asana",
       "ok": true,
-      "count": 113
+      "count": 112
     },
     {
       "name": "betterment",
@@ -34,17 +34,17 @@
     {
       "name": "brex",
       "ok": true,
-      "count": 261
+      "count": 249
     },
     {
       "name": "carta",
       "ok": true,
-      "count": 78
+      "count": 80
     },
     {
       "name": "chime",
       "ok": true,
-      "count": 77
+      "count": 80
     },
     {
       "name": "coinbase",
@@ -54,27 +54,27 @@
     {
       "name": "datadog",
       "ok": true,
-      "count": 378
+      "count": 382
     },
     {
       "name": "dropbox",
       "ok": true,
-      "count": 46
+      "count": 47
     },
     {
       "name": "duolingo",
       "ok": true,
-      "count": 55
+      "count": 54
     },
     {
       "name": "figma",
       "ok": true,
-      "count": 145
+      "count": 146
     },
     {
       "name": "flexport",
       "ok": true,
-      "count": 208
+      "count": 214
     },
     {
       "name": "gusto",
@@ -84,22 +84,22 @@
     {
       "name": "reddit",
       "ok": true,
-      "count": 146
+      "count": 145
     },
     {
       "name": "robinhood",
       "ok": true,
-      "count": 167
+      "count": 165
     },
     {
       "name": "sofi",
       "ok": true,
-      "count": 53
+      "count": 51
     },
     {
       "name": "stripe",
       "ok": true,
-      "count": 771
+      "count": 779
     },
     {
       "name": "toast",
@@ -109,7 +109,7 @@
     {
       "name": "twilio",
       "ok": true,
-      "count": 106
+      "count": 111
     }
   ]
 }
