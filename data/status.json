@@ -1,10 +1,10 @@
 {
-  "run_time": "2026-11-21T19:31:12.485274Z",
+  "run_time": "2026-11-22T19:51:40.445013Z",
   "first_run_date": "2026-11-16",
-  "days_with_success": 6,
-  "open": 3734,
-  "new_today": 22,
-  "removed_today": 30,
+  "days_with_success": 7,
+  "open": 3731,
+  "new_today": 0,
+  "removed_today": 3,
   "sources": [
     {
       "name": "affirm",
@@ -99,12 +99,12 @@
     {
       "name": "stripe",
       "ok": true,
-      "count": 778
+      "count": 777
     },
     {
       "name": "toast",
       "ok": true,
-      "count": 326
+      "count": 324
     },
     {
       "name": "twilio",
