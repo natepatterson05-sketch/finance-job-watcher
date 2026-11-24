@@ -1,25 +1,25 @@
 {
-  "run_time": "2026-11-24T00:06:00.546732Z",
+  "run_time": "2026-11-24T21:14:59.537827Z",
   "first_run_date": "2026-11-16",
   "days_with_success": 8,
-  "open": 3722,
-  "new_today": 80,
-  "removed_today": 95,
+  "open": 3709,
+  "new_today": 134,
+  "removed_today": 167,
   "sources": [
     {
       "name": "affirm",
       "ok": true,
-      "count": 218
+      "count": 216
     },
     {
       "name": "airbnb",
       "ok": true,
-      "count": 198
+      "count": 199
     },
     {
       "name": "airtable",
       "ok": true,
-      "count": 11
+      "count": 10
     },
     {
       "name": "asana",
@@ -29,37 +29,37 @@
     {
       "name": "betterment",
       "ok": true,
-      "count": 25
+      "count": 23
     },
     {
       "name": "brex",
       "ok": true,
-      "count": 260
+      "count": 264
     },
     {
       "name": "carta",
       "ok": true,
-      "count": 80
+      "count": 81
     },
     {
       "name": "chime",
       "ok": true,
-      "count": 81
+      "count": 79
     },
     {
       "name": "coinbase",
       "ok": true,
-      "count": 249
+      "count": 251
     },
     {
       "name": "datadog",
       "ok": true,
-      "count": 384
+      "count": 386
     },
     {
       "name": "dropbox",
       "ok": true,
-      "count": 54
+      "count": 50
     },
     {
       "name": "duolingo",
@@ -69,7 +69,7 @@
     {
       "name": "figma",
       "ok": true,
-      "count": 148
+      "count": 145
     },
     {
       "name": "flexport",
@@ -84,17 +84,17 @@
     {
       "name": "reddit",
       "ok": true,
-      "count": 147
+      "count": 149
     },
     {
       "name": "robinhood",
       "ok": true,
-      "count": 160
+      "count": 157
     },
     {
       "name": "sofi",
       "ok": true,
-      "count": 55
+      "count": 54
     },
     {
       "name": "stripe",
@@ -104,7 +104,7 @@
     {
       "name": "toast",
       "ok": true,
-      "count": 312
+      "count": 305
     },
     {
       "name": "twilio",
