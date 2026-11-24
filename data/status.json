@@ -1,20 +1,20 @@
 {
-  "run_time": "2026-11-22T19:51:40.445013Z",
+  "run_time": "2026-11-24T00:06:00.546732Z",
   "first_run_date": "2026-11-16",
-  "days_with_success": 7,
-  "open": 3731,
-  "new_today": 0,
-  "removed_today": 3,
+  "days_with_success": 8,
+  "open": 3722,
+  "new_today": 80,
+  "removed_today": 95,
   "sources": [
     {
       "name": "affirm",
       "ok": true,
-      "count": 222
+      "count": 218
     },
     {
       "name": "airbnb",
       "ok": true,
-      "count": 202
+      "count": 198
     },
     {
       "name": "airtable",
@@ -24,17 +24,17 @@
     {
       "name": "asana",
       "ok": true,
-      "count": 111
+      "count": 109
     },
     {
       "name": "betterment",
       "ok": true,
-      "count": 26
+      "count": 25
     },
     {
       "name": "brex",
       "ok": true,
-      "count": 249
+      "count": 260
     },
     {
       "name": "carta",
@@ -44,72 +44,72 @@
     {
       "name": "chime",
       "ok": true,
-      "count": 80
+      "count": 81
     },
     {
       "name": "coinbase",
       "ok": true,
-      "count": 252
+      "count": 249
     },
     {
       "name": "datadog",
       "ok": true,
-      "count": 382
+      "count": 384
     },
     {
       "name": "dropbox",
       "ok": true,
-      "count": 47
+      "count": 54
     },
     {
       "name": "duolingo",
       "ok": true,
-      "count": 54
+      "count": 53
     },
     {
       "name": "figma",
       "ok": true,
-      "count": 147
+      "count": 148
     },
     {
       "name": "flexport",
       "ok": true,
-      "count": 212
+      "count": 209
     },
     {
       "name": "gusto",
       "ok": true,
-      "count": 82
+      "count": 84
     },
     {
       "name": "reddit",
       "ok": true,
-      "count": 148
+      "count": 147
     },
     {
       "name": "robinhood",
       "ok": true,
-      "count": 163
+      "count": 160
     },
     {
       "name": "sofi",
       "ok": true,
-      "count": 53
+      "count": 55
     },
     {
       "name": "stripe",
       "ok": true,
-      "count": 777
+      "count": 770
     },
     {
       "name": "toast",
       "ok": true,
-      "count": 324
+      "count": 312
     },
     {
       "name": "twilio",
       "ok": true,
-      "count": 109
+      "count": 115
     }
   ]
 }
