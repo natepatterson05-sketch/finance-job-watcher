@@ -1,20 +1,20 @@
 {
-  "run_time": "2026-11-27T01:08:58.980286Z",
+  "run_time": "2026-11-28T00:41:13.724225Z",
   "first_run_date": "2026-11-16",
-  "days_with_success": 11,
-  "open": 3718,
-  "new_today": 21,
-  "removed_today": 25,
+  "days_with_success": 12,
+  "open": 3714,
+  "new_today": 18,
+  "removed_today": 24,
   "sources": [
     {
       "name": "affirm",
       "ok": true,
-      "count": 216
+      "count": 218
     },
     {
       "name": "airbnb",
       "ok": true,
-      "count": 202
+      "count": 200
     },
     {
       "name": "airtable",
@@ -29,7 +29,7 @@
     {
       "name": "betterment",
       "ok": true,
-      "count": 23
+      "count": 22
     },
     {
       "name": "brex",
@@ -39,12 +39,12 @@
     {
       "name": "carta",
       "ok": true,
-      "count": 81
+      "count": 82
     },
     {
       "name": "chime",
       "ok": true,
-      "count": 77
+      "count": 76
     },
     {
       "name": "coinbase",
@@ -69,12 +69,12 @@
     {
       "name": "figma",
       "ok": true,
-      "count": 141
+      "count": 140
     },
     {
       "name": "flexport",
       "ok": true,
-      "count": 212
+      "count": 209
     },
     {
       "name": "gusto",
@@ -94,22 +94,22 @@
     {
       "name": "sofi",
       "ok": true,
-      "count": 58
+      "count": 57
     },
     {
       "name": "stripe",
       "ok": true,
-      "count": 768
+      "count": 771
     },
     {
       "name": "toast",
       "ok": true,
-      "count": 300
+      "count": 298
     },
     {
       "name": "twilio",
       "ok": true,
-      "count": 113
+      "count": 114
     }
   ]
 }
